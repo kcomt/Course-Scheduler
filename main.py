@@ -136,8 +136,8 @@ class geneticAlgorithm:
         #random mutation
         if random.randint(0,99) < self.mutation*100:
             randomDay = random.randint(0,4)
-            randomHour = random.randint(0,17)
-            randomHour2 = random.randint(0,17)
+            randomHour = random.randint(0,13)
+            randomHour2 = random.randint(0,13)
 
             aux = son[randomHour][randomDay].copy()
             son[randomHour][randomDay] = son[randomHour2][randomDay].copy()
@@ -146,13 +146,13 @@ class geneticAlgorithm:
 
 class controller:
     def __init__(self):
-        
         self.populationObj = c.population()
         self.geneticObj = geneticAlgorithm()
-        self.populationObj.addCourses()
+        self.populationObj.initializeCourses()
         self.populationObj.createPopulation()
         self.populationObj.printPopulation()
         self.population = self.populationObj.statesObject
+    
     def runAlgorithm(self):
         solutionFound = False
         while not solutionFound:
@@ -163,13 +163,18 @@ class controller:
             for i in population:
                 fitness.append(self.geneticObj.idonityFunction(i,self.populationObj.courses))
             
-            if max(fitness) > -200:
+            if max(fitness) >= -400:
                 print("Solution found or aprox")
                 solutionFound = True
                 indexMax = fitness.index(max(fitness))
                 scheduleFinal = population[indexMax]
-        
-        print(scheduleFinal)
+
         print(self.geneticObj.idonityFunction(scheduleFinal,self.populationObj.courses))
+        for i in scheduleFinal:
+            print(i)
+
+    def addCourse(self,course):
+        self.populationObj.addCourse(course)
+        
 controller = controller()
 controller.runAlgorithm()

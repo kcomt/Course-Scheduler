@@ -57,7 +57,9 @@ class population:
         self.courses = []
         self.states = []
         self.statesObject = []
-    def addCourses(self):
+    
+    #This is for testing, before the GUI
+    def initializeCourses(self):
         course1 = seccion("MA1","Math 1","1",1,"Juan Manuel",2)
         course2 = seccion("MA1","Math 1","2",1,"Williy Enrique",2)
 
@@ -78,6 +80,9 @@ class population:
         self.courses.append(course6)
         self.courses.append(course7)
 
+    def addCourse(self,coursep):
+        self.courses.append(coursep)
+        
     def createPopulation(self):
         N = 10
         for n in range(N):
@@ -100,7 +105,7 @@ class population:
             day = 0
             for i in range(len(self.courses)):
                 #get random number for hour
-                hour = random.randint(0,16-self.courses[i].duration)
+                hour = random.randint(0,15-self.courses[i].duration)
                 newState[hour][day].append(self.courses[i].courseName)
                 newStateOjects[hour][day].append(self.courses[i])
                 if day >= 4:
