@@ -60,18 +60,48 @@ class population:
     
     #This is for testing, before the GUI
     def initializeCourses(self):
-        course1 = course("MA1","Math 1","1",1,"Juan Manuel",2)
+        #ciclo1
+        course1 = course("MA1","Math 1","1",1,"Juan Silva",2)
         course2 = course("MA1","Math 1","2",1,"Williy Enrique",2)
 
         course2 = course("PG1","Programacion 1","1",1,"Williy Enrique",3)
-        course3 = course("PG1","Programacion 1","2",1,"Juan Manuel",3)
+        course3 = course("PG1","Programacion 1","2",1,"Williy Enrique",3)
+    
+        course4 = course("LE1","English 1","1",1,"Daniel Diaz",2)
+        course5 = course("LE1","English 1","2",1,"Luis Kcomt",2)
 
-        course4 = course("LE1","English 1","1",1,"Kim Yung",2)
-        course5 = course("LE1","English 1","2",1,"Kim Yung",2)
+        course6 = course("CH1","Chemisty 1","1",1,"Miguel Andres",2)
+        course7 = course("CH1","Chemisty 1","2",1,"Miguel Andres",2)
 
-        course6 = course("CH1","Chemisty 1","1",1,"BOR BOR",2)
-        course7 = course("CH1","Chemisty 1","2",1,"BOR BOR",2)
+        #ciclo2
+        course8 = course("CH1","Chemisty 2","1",2,"Miguel Andres",2)
+        course9 = course("CH1","Chemisty 2","2",2,"Ricardo Guevara",2)
 
+        course10 = course("PG1","Programacion 2","1",2,"Jaily Arteaga",3)
+        course11 = course("PG1","Programacion 2","2",2,"Jaily Arteaga",3)
+
+        course12 = course("PG1","Calculo","1",2,"Santiago Lopez",4)
+        course13 = course("PG1","Calculo","2",2,"Juan Silva",4)
+        course14 = course("PG1","Calculo","3",2,"Santiago Lopez",4)
+        course15 = course("PG1","Calculo","4",2,"Williy Enrique",4)
+
+        course16 = course("PG1","Mate Discreta","1",2,"Willy Enrique",3)
+        course17 = course("PG1","Mate Discreta","2",2,"Bruno Atocha",3)
+
+        #ciclo3
+        course18 = course("CH1","Algoritmos","1",3,"Luis Kcomt",2)
+        course19 = course("CH1","Algoritmos","2",3,"Wans",2)
+        course20 = course("CH1","Algoritmos","3",3,"Wans",2)
+
+        course21 = course("PG1","Base de datos","1",3,"Carlos Larios",3)
+        course22 = course("PG1","Base de datos","2",3,"Ricardo Guevara",3)
+
+        course23 = course("PG1","Calculo 2","1",3,"Santiago Lopez",3)
+        course24 = course("PG1","Calculo 2","2",3,"Carlos Larios",3)
+
+        course25 = course("PG1","Requerimientos","1",3,"Carlos Larios",3)
+        course26 = course("PG1","Requerimientos","2",3,"Guillermo Lam",3)
+        
         self.courses.append(course1)
         self.courses.append(course2)
         self.courses.append(course3)
@@ -79,7 +109,25 @@ class population:
         self.courses.append(course5)
         self.courses.append(course6)
         self.courses.append(course7)
-
+        self.courses.append(course8)
+        self.courses.append(course9)
+        self.courses.append(course10)
+        self.courses.append(course11)
+        self.courses.append(course12)
+        self.courses.append(course13)
+        self.courses.append(course14)
+        self.courses.append(course15)
+        self.courses.append(course16)
+        self.courses.append(course17)
+        self.courses.append(course18)
+        self.courses.append(course19)
+        self.courses.append(course20)
+        self.courses.append(course21)
+        self.courses.append(course22)
+        self.courses.append(course23)
+        self.courses.append(course24)
+        self.courses.append(course25)
+        self.courses.append(course26)
     def addCourse(self,coursep):
         self.courses.append(coursep)
         

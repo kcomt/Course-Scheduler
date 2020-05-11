@@ -5,9 +5,11 @@ import main as m
 import courseClasses as c
 
 inserted = False
+number = 1
 
 controllerObj = m.controller()
 master = tk.Tk()
+master.title("kc++")
 
 width = 600
 length = 600 
@@ -62,7 +64,7 @@ def saveCourse():
 
     auxSeccion = c.course(0,courseName,seccions,grade,profesor,duration)
     controllerObj.addCourse(auxSeccion)
-    listBox.insert(tk.END," Curso:  " + courseName +"   Seccion: " +seccions + "     Ciclo: "+ str(grade) +"  Profesor:  " + 
+    listBox.insert(tk.END,str(number) + ". Curso:  " + courseName +"   Seccion: " +seccions + "     Ciclo: "+ str(grade) +"  Profesor:  " + 
     profesor + "    Duration:  " + str(duration))
 
     textBoxCourseName.delete(0,tk.END)
@@ -70,7 +72,7 @@ def saveCourse():
     textBoxGrade.delete(0,tk.END)
     textBoxProfessor.delete(0,tk.END)
     textBoxDuration.delete(0,tk.END)
-
+    number += 1
     messagebox.showinfo(title="Exito", message="Se guardo exitosamente el curso!")
 
 def deleteAll():
@@ -89,13 +91,229 @@ listBox = tk.Listbox(tab2,height=400,width=300, font="Calibri 12")
 listBox.pack(padx = 10, pady = 10)
 if not inserted:
     for i in range(len(controllerObj.populationObj.courses)):
-        listBox.insert(tk.END," Curso:  " + controllerObj.populationObj.courses[i].courseName +"   Seccion: " +controllerObj.populationObj.courses[i].seccion  + 
+        listBox.insert(tk.END,str(number) + ". Curso:  " + controllerObj.populationObj.courses[i].courseName +"   Seccion: " +controllerObj.populationObj.courses[i].seccion  + 
         "     Ciclo: "+ str(controllerObj.populationObj.courses[i].grade) +"  Profesor:  " + controllerObj.populationObj.courses[i].profesor +
          "    Duration:  " + str(controllerObj.populationObj.courses[i].duration))
+        number += 1
     insert = True
 
 #Tab 3
-buttonGenerate= tk.Button(tab3, text = "Generate Schedule", command = deleteAll)
+def generate():
+    controllerObj.runAlgorithm()
+    days = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
+
+    window = tk.Toplevel(master,bg="light blue")
+    window.title("Ciclo 1")
+    
+    for i in range(17):
+        label = tk.Label(window, text=str(i+7)+":00 Horas",bg="light blue")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window, text=days[i],bg="light blue")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(1)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window, text=str(ciclo1[i][j][0]),bg="light blue")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window, text="Vacio",bg="light blue")
+                label.grid(row = i+1, column = j+1 )  
+
+    window2 = tk.Toplevel(master,bg="light pink")
+    window2.title("Ciclo 2")
+    
+    for i in range(17):
+        label = tk.Label(window2, text=str(i+7)+":00 Horas",bg="light pink")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window2, text=days[i],bg="light pink")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(2)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window2, text=str(ciclo1[i][j][0]),bg="light pink")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window2, text="Vacio",bg="light pink")
+                label.grid(row = i+1, column = j+1 )  
+
+    window3 = tk.Toplevel(master,bg="orange")
+    window3.title("Ciclo 3")
+    
+    for i in range(17):
+        label = tk.Label(window3, text=str(i+7)+":00 Horas",bg="orange")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window3, text=days[i],bg="orange")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(3)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window3, text=str(ciclo1[i][j][0]),bg="orange")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window3, text="Vacio",bg="orange")
+                label.grid(row = i+1, column = j+1 )  
+    
+
+    window4 = tk.Toplevel(master,bg="brown")
+    window4.title("Ciclo 4")
+    
+    for i in range(17):
+        label = tk.Label(window4, text=str(i+7)+":00 Horas",bg="brown")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window4, text=days[i],bg="brown")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(4)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window4, text=str(ciclo1[i][j][0]),bg="brown")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window4, text="Vacio",bg="brown")
+                label.grid(row = i+1, column = j+1 )  
+
+    window5 = tk.Toplevel(master,bg="light yellow")
+    window5.title("Ciclo 5")
+    
+    for i in range(17):
+        label = tk.Label(window5, text=str(i+7)+":00 Horas",bg="light yellow")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window5, text=days[i],bg="light yellow")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(5)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window5, text=str(ciclo1[i][j][0]),bg="light yellow")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window5, text="Vacio",bg="light yellow")
+                label.grid(row = i+1, column = j+1 )
+
+    window6 = tk.Toplevel(master,bg="red")
+    window6.title("Ciclo 6")
+    
+    for i in range(17):
+        label = tk.Label(window6, text=str(i+7)+":00 Horas",bg="red")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window6, text=days[i],bg="red")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(6)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window6, text=str(ciclo1[i][j][0]),bg="red")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window6, text="Vacio",bg="red")
+                label.grid(row = i+1, column = j+1 )
+
+    window7 = tk.Toplevel(master,bg="light green")
+    window7.title("Ciclo 7")
+    
+    for i in range(17):
+        label = tk.Label(window7, text=str(i+7)+":00 Horas",bg="light green")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window7, text=days[i],bg="light green")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(7)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window7, text=str(ciclo1[i][j][0]),bg="light green")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window7, text="Vacio",bg="light green")
+                label.grid(row = i+1, column = j+1 )
+
+    window8 = tk.Toplevel(master,bg="blue")
+    window8.title("Ciclo 8")
+    
+    for i in range(17):
+        label = tk.Label(window8, text=str(i+7)+":00 Horas",bg="blue")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window8, text=days[i],bg="blue")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(8)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window8, text=str(ciclo1[i][j][0]),bg="blue")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window8, text="Vacio",bg="blue")
+                label.grid(row = i+1, column = j+1 )
+
+    window9 = tk.Toplevel(master,bg="yellow")
+    window9.title("Ciclo 9")
+    
+    for i in range(17):
+        label = tk.Label(window9, text=str(i+7)+":00 Horas",bg="yellow")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window9, text=days[i],bg="yellow")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(9)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window9, text=str(ciclo1[i][j][0]),bg="yellow")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window9, text="Vacio",bg="yellow")
+                label.grid(row = i+1, column = j+1 )
+
+    window10 = tk.Toplevel(master,bg="green")
+    window10.title("Ciclo 10")
+    
+    for i in range(17):
+        label = tk.Label(window10, text=str(i+7)+":00 Horas",bg="green")
+        label.grid(row = 1+i, column = 0)
+
+    for i in range(len(days)):
+        label = tk.Label(window10, text=days[i],bg="green")
+        label.grid(row = 0, column = i+1)
+
+    ciclo1 = controllerObj.returnScheduleBasedOnGrade(10)
+    for i in range(17):
+        for j in range(5):
+            if len(ciclo1[i][j]) > 0:
+                label = tk.Label(window10, text=str(ciclo1[i][j][0]),bg="green")
+                label.grid(row = i+1, column = j+1 )
+            else:
+                label = tk.Label(window10, text="Vacio",bg="green")
+                label.grid(row = i+1, column = j+1 )
+
+buttonGenerate= tk.Button(tab3, text = "Generate Schedule", command = generate)
 buttonGenerate.pack(pady = 10,padx = 20)
 
 master.mainloop()

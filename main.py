@@ -29,11 +29,11 @@ class geneticAlgorithm:
                         if courses[i] != courses[j]:
                             #Compare if the same grade, if so rest some points
                             if courses[i].grade == courses[j].grade:
-                                totalPoints -= 10000
+                                totalPoints -= 20000
                                 
                             #Compare if the same profesor, if so rest some points
                             if courses[i].profesor == courses[j].profesor:
-                                totalPoints -= 20000
+                                totalPoints -= 30000
 
                 #Compairing future coures that start during the duration
                     for j in range(courses[i].duration):
@@ -42,11 +42,11 @@ class geneticAlgorithm:
                             if courses[i] != state[contRow+j][contCourse][k]:
                                 #Compare if the same grade, if so rest some points
                                 if courses[i].grade == state[contRow+j][contCourse][k].grade:
-                                    totalPoints -= 10000
+                                    totalPoints -= 20000
                                     
                                 #Compare if the same profesor, if so rest some points
                                 if courses[i].profesor == state[contRow+j][contCourse][k].profesor:
-                                    totalPoints -= 20000     
+                                    totalPoints -= 30000     
                 contCourse += 1                       
             contRow += 1
 
@@ -150,7 +150,8 @@ class controller:
         self.populationObj.initializeCourses()
         self.populationObj.createPopulation()
         self.population = self.populationObj.statesObject
-    
+        self.finalSolution = []
+
     def runAlgorithm(self):
         solutionFound = False
         while not solutionFound:
@@ -161,15 +162,14 @@ class controller:
             for i in population:
                 fitness.append(self.geneticObj.idonityFunction(i,self.populationObj.courses))
             
-            if max(fitness) >= -400:
+            if max(fitness) >= -50000:
                 print("Solution found or aprox")
                 solutionFound = True
                 indexMax = fitness.index(max(fitness))
                 scheduleFinal = population[indexMax]
-
-        print(self.geneticObj.idonityFunction(scheduleFinal,self.populationObj.courses))
-        for i in scheduleFinal:
-            print(i)
+            else:
+                print(max(fitness))
+        self.finalSolution = scheduleFinal
 
     def addCourse(self,course):
         self.populationObj.addCourse(course)
@@ -179,3 +179,34 @@ class controller:
     
     def getCourses():
         return self.populationObj.coures
+
+    def returnScheduleBasedOnGrade(self,grade):
+        scheduleFinalForGrade =[
+        [[],[],[],[],[],[]],#7:00
+        [[],[],[],[],[],[]],#8:00
+        [[],[],[],[],[],[]],#9:00
+        [[],[],[],[],[],[]],#10:00
+        [[],[],[],[],[],[]],#11:00
+        [[],[],[],[],[],[]],#12:00
+        [[],[],[],[],[],[]],#13:00
+        [[],[],[],[],[],[]],#14:00
+        [[],[],[],[],[],[]],#15:00
+        [[],[],[],[],[],[]],#16:00
+        [[],[],[],[],[],[]],#17:00
+        [[],[],[],[],[],[]],#18:00
+        [[],[],[],[],[],[]],#19:00
+        [[],[],[],[],[],[]],#20:00
+        [[],[],[],[],[],[]],#21:00
+        [[],[],[],[],[],[]],#22:00
+        [[],[],[],[],[],[]]#23:00
+        ]
+
+        for row in range(len(self.finalSolution)):
+            for column in range(len(self.finalSolution[row])):
+                for i in range(len(self.finalSolution[row][column])):
+                    if self.finalSolution[row][column][i].grade == grade:
+                        for j in range(self.finalSolution[row][column][i].duration):
+                            scheduleFinalForGrade[row+j][column].append(self.finalSolution[row][column][i].courseName + " con "+
+                            self.finalSolution[row][column][i].profesor)
+
+        return scheduleFinalForGrade
