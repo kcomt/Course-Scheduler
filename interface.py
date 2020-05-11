@@ -27,7 +27,7 @@ tab3 = ttk.Frame(tabControl,width=width,height=length)
 
 tabControl.add(tab1, text="Add Course")
 tabControl.add(tab2, text="See Courses")
-tabControl.add(tab3, text="Generate Schedule")
+tabControl.add(tab3, text="Generate Schedule/Info")
 
 #Tab Add Course
 label1 = tk.Label(tab1, text="Course Name: ", font="Calibri 10")
@@ -316,4 +316,17 @@ def generate():
 buttonGenerate= tk.Button(tab3, text = "Generate Schedule", command = generate)
 buttonGenerate.pack(pady = 10,padx = 20)
 
-master.mainloop()
+canvas = tk.Canvas(tab3,width=200,height=400)
+canvas.pack()
+canvas.create_text(100,180,text="This is scheduling program.")
+canvas.create_text(100,200,text="It was made with Python")
+canvas.create_text(100,220,text="using genetic algorithms.")
+canvas.create_text(100,240,text="It's main objetive")
+canvas.create_text(100,260,text="is to schedule")
+canvas.create_text(100,280,text="courses of a given career,")
+canvas.create_text(100,300,text="like Software Engineering.")
+canvas.create_text(100,320,text="It tries to eliminate same grade ")
+canvas.create_text(100,340,text="course and same profesor conflicts.")
+canvas.create_text(100,360,text="It was made for a")
+canvas.create_text(100,380,text="college project. Enjoy.")
+master.mainloop()   

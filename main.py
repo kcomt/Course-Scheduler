@@ -154,6 +154,7 @@ class controller:
 
     def runAlgorithm(self):
         solutionFound = False
+        iterations = 0
         while not solutionFound:
             #get new population based on old
             population = self.geneticObj.findBestOfPopulation(self.population, self.populationObj.courses)
