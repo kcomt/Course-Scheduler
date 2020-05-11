@@ -4,12 +4,13 @@ from tkinter import messagebox
 import main as m
 import courseClasses as c
 
-number = 1
+
 inserted = False
 controllerObj = m.controller()
 master = tk.Tk()
 master.title("kc++")
 
+number = 1
 width = 600
 length = 600 
 master.geometry(str(width)+"x"+str(length))
@@ -55,7 +56,7 @@ textBoxDuration = tk.Entry(tab1,font="Calibri 10")
 textBoxDuration.pack(anchor="w",pady = 10,padx = 20)
 
 def saveCourse():
-    number = 1
+    number = len(controllerObj.populationObj.courses) + 1
     courseName = textBoxCourseName.get()
     seccions = textBoxSeccions.get()
     grade = int(textBoxGrade.get())
