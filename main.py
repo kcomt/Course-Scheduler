@@ -1,7 +1,6 @@
 import courseClasses as c
 import random
 random.seed()
-
 class geneticAlgorithm:
 
     def __init__(self):
@@ -150,7 +149,6 @@ class controller:
         self.geneticObj = geneticAlgorithm()
         self.populationObj.initializeCourses()
         self.populationObj.createPopulation()
-        self.populationObj.printPopulation()
         self.population = self.populationObj.statesObject
     
     def runAlgorithm(self):
@@ -175,6 +173,9 @@ class controller:
 
     def addCourse(self,course):
         self.populationObj.addCourse(course)
-        
-controller = controller()
-controller.runAlgorithm()
+    
+    def deleteAll(self):
+        self.populationObj.courses = []
+    
+    def getCourses():
+        return self.populationObj.coures

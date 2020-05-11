@@ -1,7 +1,7 @@
 import random
 random.seed()
 
-class seccion:
+class course:
     def __init__(self,courseId,courseName,seccion,grade,profesor,duration):
         self.courseId = courseId
         self.courseName = courseName
@@ -60,17 +60,17 @@ class population:
     
     #This is for testing, before the GUI
     def initializeCourses(self):
-        course1 = seccion("MA1","Math 1","1",1,"Juan Manuel",2)
-        course2 = seccion("MA1","Math 1","2",1,"Williy Enrique",2)
+        course1 = course("MA1","Math 1","1",1,"Juan Manuel",2)
+        course2 = course("MA1","Math 1","2",1,"Williy Enrique",2)
 
-        course2 = seccion("PG1","Programacion 1","1",1,"Williy Enrique",3)
-        course3 = seccion("PG1","Programacion 1","2",1,"Juan Manuel",3)
+        course2 = course("PG1","Programacion 1","1",1,"Williy Enrique",3)
+        course3 = course("PG1","Programacion 1","2",1,"Juan Manuel",3)
 
-        course4 = seccion("LE1","English 1","1",1,"Kim Yung",2)
-        course5 = seccion("LE1","English 1","2",1,"Kim Yung",2)
+        course4 = course("LE1","English 1","1",1,"Kim Yung",2)
+        course5 = course("LE1","English 1","2",1,"Kim Yung",2)
 
-        course6 = seccion("CH1","Chemisty 1","1",1,"BOR BOR",2)
-        course7 = seccion("CH1","Chemisty 1","2",1,"BOR BOR",2)
+        course6 = course("CH1","Chemisty 1","1",1,"BOR BOR",2)
+        course7 = course("CH1","Chemisty 1","2",1,"BOR BOR",2)
 
         self.courses.append(course1)
         self.courses.append(course2)
