@@ -162,7 +162,7 @@ class controller:
             for i in population:
                 fitness.append(self.geneticObj.idonityFunction(i,self.populationObj.courses))
             
-            if max(fitness) >= -50000:
+            if max(fitness) >= -45000:
                 print("Solution found or aprox")
                 solutionFound = True
                 indexMax = fitness.index(max(fitness))
