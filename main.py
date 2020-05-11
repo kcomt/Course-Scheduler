@@ -165,14 +165,15 @@ class controller:
             for i in population:
                 fitness.append(self.geneticObj.idonityFunction(i,self.populationObj.courses))
             
-            if max(fitness) >= -30000:
+            if max(fitness) >= -10000:
                 print("Solution found or aprox")
                 solutionFound = True
                 indexMax = fitness.index(max(fitness))
                 scheduleFinal = population[indexMax]
+                print(max(fitness))
             else:
                 print(max(fitness))
-                if iterations > 1000:
+                if iterations > 5000:
                     iterations = 0
                     self.populationObj.statesObject = []
                     self.populationObj.createPopulation()
