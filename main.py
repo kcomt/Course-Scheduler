@@ -148,11 +148,13 @@ class controller:
         self.populationObj = c.population()
         self.geneticObj = geneticAlgorithm()
         self.populationObj.initializeCourses()
-        self.populationObj.createPopulation()
-        self.population = self.populationObj.statesObject
         self.finalSolution = []
 
     def runAlgorithm(self):
+        self.populationObj.createPopulation()
+        self.population = self.populationObj.statesObject
+
+
         solutionFound = False
         iterations = 0
         while not solutionFound:
@@ -163,13 +165,22 @@ class controller:
             for i in population:
                 fitness.append(self.geneticObj.idonityFunction(i,self.populationObj.courses))
             
-            if max(fitness) >= -45000:
+            if max(fitness) >= -30000:
                 print("Solution found or aprox")
                 solutionFound = True
                 indexMax = fitness.index(max(fitness))
                 scheduleFinal = population[indexMax]
             else:
                 print(max(fitness))
+                if iterations > 1000:
+                    iterations = 0
+                    self.populationObj.statesObject = []
+                    self.populationObj.createPopulation()
+                    self.population = self.populationObj.statesObject
+                else:
+                    iterations +=1
+                
+
         self.finalSolution = scheduleFinal
 
     def addCourse(self,course):

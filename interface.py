@@ -4,9 +4,8 @@ from tkinter import messagebox
 import main as m
 import courseClasses as c
 
-inserted = False
 number = 1
-
+inserted = False
 controllerObj = m.controller()
 master = tk.Tk()
 master.title("kc++")
@@ -56,6 +55,7 @@ textBoxDuration = tk.Entry(tab1,font="Calibri 10")
 textBoxDuration.pack(anchor="w",pady = 10,padx = 20)
 
 def saveCourse():
+    number = 1
     courseName = textBoxCourseName.get()
     seccions = textBoxSeccions.get()
     grade = int(textBoxGrade.get())
