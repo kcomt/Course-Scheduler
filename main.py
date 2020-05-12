@@ -173,7 +173,7 @@ class controller:
                 print(max(fitness))
             else:
                 print(max(fitness))
-                if iterations > 5000:
+                if iterations > 500:
                     iterations = 0
                     self.populationObj.statesObject = []
                     self.populationObj.createPopulation()
